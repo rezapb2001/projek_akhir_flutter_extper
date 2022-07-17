@@ -70,6 +70,11 @@ void init() {
       locator(),
     ),
   );
+  locator.registerFactory(
+        () => TvTopRatedNotifier(
+      getTopRatedTv: locator(),
+    ),
+  );
   locator.registerFactory<TvWatchlistBloc>(
       () => TvWatchlistBloc(locator(), locator(), locator(), locator()));
 

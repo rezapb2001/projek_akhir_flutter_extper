@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tv_series/tv_series.dart';
 
 import 'package:flutter/material.dart';
@@ -17,8 +17,7 @@ class _TopRatedTvPageState extends State<TopRatedTvPage> {
   void initState() {
     super.initState();
     Future.microtask(() =>
-        Provider.of<TvTopRatedNotifier>(context, listen: false)
-            .fetchTopRatedTv());
+        context.read<TvTopRatedBloc>().add(OnTvTopRatedCalled()));
   }
 
   @override
@@ -29,24 +28,25 @@ class _TopRatedTvPageState extends State<TopRatedTvPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<TvTopRatedNotifier>(
-          builder: (context, data, child) {
-            if (data.state == RequestState.Loading) {
+        child: BlocBuilder<TvTopRatedBloc, TvTopRatedState>(
+          builder: (context, state) {
+            if (state is TvTopRatedLoading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (data.state == RequestState.Loaded) {
+            } else if (state is TvTopRatedHasData) {
+              final tvSeries = state.result;
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final tv = data.tv[index];
+                  final tv = tvSeries[index];
                   return TvCard(tv);
                 },
-                itemCount: data.tv.length,
+                itemCount: tvSeries.length,
               );
             } else {
               return Center(
-                key: const Key('error_message'),
-                child: Text(data.message),
+                key: const Key('error_msg'),
+                child: Text((state as TvTopRatedError).message),
               );
             }
           },
