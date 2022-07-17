@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:movie/movie.dart';
-import 'package:watchlist/watchlist.dart';
+import 'package:watchlist/presentation/bloc/movie/movie_watchlist_bloc.dart';
 
 import '../../dummy_data/dummy_objects.dart';
 import '../../movie_helper/page_helper_test.dart';
@@ -87,7 +87,7 @@ void main() {
 
         expect(find.text('Watchlist'), findsOneWidget);
         expect(find.text('Overview'), findsOneWidget);
-        expect(find.text('More Like This'), findsOneWidget);
+        expect(find.text('Recommendations'), findsOneWidget);
         expect(find.byKey(const Key('detail_movie')), findsOneWidget);
       });
 

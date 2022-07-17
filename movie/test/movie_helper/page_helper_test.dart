@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:movie/movie.dart';
-import 'package:watchlist/watchlist.dart';
+import 'package:watchlist/presentation/bloc/movie/movie_watchlist_bloc.dart';
 
 // fake now playing movies bloc
 class FakeMovieNowPlayingEvent extends Fake implements MovieNowPlayingEvent {}
