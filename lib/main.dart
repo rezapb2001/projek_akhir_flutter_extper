@@ -18,40 +18,28 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+    return MultiBlocProvider(
       providers: [
         // Movie provider
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieListNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieDetailNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TopRatedMoviesNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<PopularMoviesNotifier>(),
-        ),
+        BlocProvider(create: (_) => di.locator<MovieNowPlayingBloc>()),
+        BlocProvider(create: (_) => di.locator<MoviePopularBloc>()),
+        BlocProvider(create: (_) => di.locator<MovieTopRatedBloc>()),
+        BlocProvider(create: (_) => di.locator<MovieDetailBloc>()),
+        BlocProvider(create: (_) => di.locator<MovieRecommendationBloc>()),
         BlocProvider(create: (_) => di.locator<MovieSearchBloc>()),
         BlocProvider(create: (_) => di.locator<MoviesWatchlistBloc>()),
 
         // Tv Series provider
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvListNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvPopularNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvTopRatedNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvDetailNotifier>(),
-        ),
+        BlocProvider(create: (_) => di.locator<TvNowPlayingBloc>()),
+        BlocProvider(create: (_) => di.locator<TvPopularBloc>()),
+        BlocProvider(create: (_) => di.locator<TvTopRatedBloc>()),
+        BlocProvider(create: (_) => di.locator<TvDetailBloc>()),
+        BlocProvider(create: (_) => di.locator<TvRecommendationBloc>()),
         BlocProvider(create: (_) => di.locator<TvSearchBloc>()),
         BlocProvider(create: (_) => di.locator<TvWatchlistBloc>()),
       ],
+
+
       child: MaterialApp(
         title: 'DiTonTon',
         debugShowCheckedModeBanner: false,
@@ -61,10 +49,14 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: kRichBlack,
           textTheme: kTextTheme,
         ),
-        home: HomePage(),
+        home: SplashScreen(),
         navigatorObservers: [routeObserver],
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
+            case '/splashscreen':
+              return MaterialPageRoute(builder: (_) => SplashScreen ());
+            case ScreenLogin.routeName:
+              return MaterialPageRoute(builder: (_) => ScreenLogin ());
             case '/home':
               return MaterialPageRoute(builder: (_) => HomePage());
             case SearchPage.routeName:

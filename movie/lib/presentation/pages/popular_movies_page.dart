@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/movie.dart';
 
 import 'package:flutter/material.dart';
@@ -16,9 +16,8 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<PopularMoviesNotifier>(context, listen: false)
-            .fetchPopularMovies());
+    Future.microtask(
+            () => context.read<MoviePopularBloc>().add(OnMoviePopularCalled()));
   }
 
   @override
@@ -29,24 +28,25 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<PopularMoviesNotifier>(
-          builder: (context, data, child) {
-            if (data.state == RequestState.Loading) {
+        child: BlocBuilder<MoviePopularBloc, MoviePopularState>(
+          builder: (context, state) {
+            if (state is MoviePopularLoading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (data.state == RequestState.Loaded) {
+            } else if (state is MoviePopularHasData) {
+              final movies = state.result;
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final movie = data.movies[index];
+                  final movie = movies[index];
                   return MovieCard(movie);
                 },
-                itemCount: data.movies.length,
+                itemCount: movies.length,
               );
             } else {
               return Center(
-                key: const Key('error_message'),
-                child: Text(data.message),
+                key: const Key('error_msg'),
+                child: Text((state as MoviePopularError).message),
               );
             }
           },

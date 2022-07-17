@@ -10,3 +10,5 @@ export 'utils/utils.dart';
 export 'presentation/pages/home_page.dart';
 export 'data/models/genre_model.dart';
 export 'domain/entities/genre.dart';
+export 'presentation/pages/spalshscreen.dart';
+export 'presentation/pages/login_page.dart';
