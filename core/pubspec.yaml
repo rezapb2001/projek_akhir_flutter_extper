@@ -48,10 +48,7 @@ flutter:
   uses-material-design: true
 
   # To add assets to your package, add an assets section, like this:
-  assets:
-    - assets/circle-g.png
-    - assets/login.png
-    - assets/movieTv.png
+  # assets:
   #
   # For details regarding assets in packages, see
   # https://flutter.dev/assets-and-images/#from-packages
