@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:movie/movie.dart';
 import 'package:tv_series/tv_series.dart';
 import 'package:search/search.dart';

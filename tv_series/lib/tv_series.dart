@@ -1,14 +1,6 @@
 library tv_series;
 
-export 'data/datasources/database_helper_tv.dart';
-export 'data/datasources/tv_local_data_source.dart';
-export 'data/datasources/tv_remote_data_source.dart';
-export 'data/models/tv_detail_model.dart';
-export 'data/models/tv_model.dart';
-export 'data/models/tv_response.dart';
-export 'data/models/tv_table.dart';
-export 'data/models/tv_table.dart';
-export 'data/repositories/tv_repository_impl.dart';
+
 export 'domain/entities/tv.dart';
 export 'domain/entities/tv_detail.dart';
 export 'domain/repositories/tv_repository.dart';

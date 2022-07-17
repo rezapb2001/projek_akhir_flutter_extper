@@ -1,13 +1,5 @@
 library movie;
 
-export 'data/datasources/database_helper.dart';
-export 'data/datasources/movie_local_data_source.dart';
-export 'data/datasources/movie_remote_data_source.dart';
-export 'data/models/movie_detail_model.dart';
-export 'data/models/movie_model.dart';
-export 'data/models/movie_response.dart';
-export 'data/models/movie_table.dart';
-export 'data/repositories/movie_repository_impl.dart';
 export 'domain/entities/movie.dart';
 export 'domain/entities/movie_detail.dart';
 export 'domain/repositories/movie_repository.dart';
