@@ -4,11 +4,11 @@ import 'package:movie/movie.dart';
 import 'package:watchlist/presentation/bloc/movie/movie_watchlist_bloc.dart';
 
 // fake now playing movies bloc
-class FakeMovieNowPlayingEvent extends Fake implements MovieNowPlayingEvent {}
+class FakeNowPlayingMoviesEvent extends Fake implements MovieNowPlayingEvent {}
 
-class FakeMovieNowPlayingState extends Fake implements MovieNowPlayingState {}
+class FakeNowPlayingMoviesState extends Fake implements MovieNowPlayingState {}
 
-class FakeMovieNowPlayingBloc
+class FakeNowPlayingMoviesBloc
     extends MockBloc<MovieNowPlayingEvent, MovieNowPlayingState>
     implements MovieNowPlayingBloc {}
 
@@ -39,21 +39,21 @@ class FakeMovieDetailBloc extends MockBloc<MovieDetailEvent, MovieDetailState>
     implements MovieDetailBloc {}
 
 // fake movie recommendations bloc
-class FakeMovieRecommendationsEvent extends Fake
+class FakeMovieRecommendationEvent extends Fake
     implements MovieRecommendationEvent {}
 
-class FakeMovieRecommendationsState extends Fake
+class FakeMovieRecommendationState extends Fake
     implements MovieRecommendationState {}
 
-class FakeMovieRecommendationsBloc
+class FakeMovieRecommendationBloc
     extends MockBloc<MovieRecommendationEvent, MovieRecommendationState>
     implements MovieRecommendationBloc {}
 
 // fake watchlist movies bloc
 class FakeMovieWatchlistEvent extends Fake implements MoviesWatchlistEvent {}
 
-class FakeMovieWatchlistState extends Fake implements MoviesWatchlistState {}
+class FakeMoviesWatchlistState extends Fake implements MoviesWatchlistState {}
 
-class FakeMovieWatchlistBloc
+class FakeMoviesWatchlistBloc
     extends MockBloc<MoviesWatchlistEvent, MoviesWatchlistState>
     implements MoviesWatchlistBloc {}

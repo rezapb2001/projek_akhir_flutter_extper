@@ -13,3 +13,4 @@ export 'domain/entities/genre.dart';
 export 'presentation/pages/spalshscreen.dart';
 export 'presentation/pages/login_page.dart';
 export 'utils/sll_pinging.dart';
+export 'utils/shared.dart';
