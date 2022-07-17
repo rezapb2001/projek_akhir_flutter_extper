@@ -1,5 +1,6 @@
 name: movie
 description: A new Flutter package project.
+publish_to: 'none'
 version: 0.0.1
 homepage:
 
@@ -8,46 +9,31 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  cupertino_icons: ^1.0.2
-  http: ^0.13.3
-  dartz: ^0.10.1
-  equatable: ^2.0.2
-  google_fonts: ^2.1.0
-  flutter_rating_bar: ^4.0.0
-  cached_network_image: ^3.0.0
-  get_it: ^7.1.3
-  sqflite_sqlcipher: ^2.1.0
-  test_cov_console: ^0.2.2
-  flutter_bloc: ^8.0.1
-  rxdart: ^0.27.1
   flutter:
     sdk: flutter
-
-  #modularization
   core:
     path: ../core
-  search:
-    path: ../search
-  watchlist:
-    path: ../watchlist
-
+  tv:
+    path: ../tv
+  equatable: ^2.0.2
+  sqflite: ^2.0.0+3
+  rxdart: ^0.27.3
+  firebase_crashlytics: ^2.7.2
+  flutter_bloc: ^8.0.1
+  dartz:
+  mocktail:
+  http:
+  
 dev_dependencies:
+  bloc_test: ^9.0.3
+  mockito: ^5.0.8
+  build_runner: ^2.0.4
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-  mockito: ^5.0.8
-  build_runner: ^2.0.4
-  analyzer: ^4.1.0
-  mocktail: ^0.3.0
-  bloc_test: ^9.0.3
 
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter packages.
 flutter:
-  uses-material-design: true
 
   # To add assets to your package, add an assets section, like this:
   # assets:

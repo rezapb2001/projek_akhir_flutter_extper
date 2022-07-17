@@ -1,7 +1,6 @@
 import 'package:core/core.dart';
-import 'package:movie/movie.dart';
-
 import 'package:dartz/dartz.dart';
+import 'package:movie/movie.dart';
 
 class GetMovieDetail {
   final MovieRepository repository;

@@ -17,8 +17,8 @@ class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => Future.microtask(() =>
-        context.read<MovieTopRatedBloc>().add(OnMovieTopRatedCalled())));
+    Future.microtask(
+        () => context.read<TopRatedMoviesBloc>().add(FetchTopRatedMovies()));
   }
 
   @override
@@ -29,26 +29,27 @@ class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: BlocBuilder<MovieTopRatedBloc, MovieTopRatedState>(
+        child: BlocBuilder<TopRatedMoviesBloc, TopRatedMoviesState>(
           builder: (context, state) {
-            if (state is MovieTopRatedLoading) {
+            if (state is TopRatedMoviesLoading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (state is MovieTopRatedHasData) {
-              final movies = state.result;
+            } else if (state is TopRatedMoviesHasData) {
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final movie = movies[index];
+                  final movie = state.result[index];
                   return MovieCard(movie);
                 },
-                itemCount: movies.length,
+                itemCount: state.result.length,
+              );
+            } else if (state is TopRatedMoviesError) {
+              return Center(
+                key: const Key('error_message'),
+                child: Text(state.message),
               );
             } else {
-              return Center(
-                key: const Key('error_msg'),
-                child: Text((state as MovieTopRatedError).message),
-              );
+              return const Center();
             }
           },
         ),

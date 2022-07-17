@@ -1,33 +1,27 @@
 library core;
 
+// styles
 export 'styles/colors.dart';
-export 'styles/text_styles.dart';
+export 'styles/text_style.dart';
+
+// utils
 export 'utils/constants.dart';
 export 'utils/exception.dart';
 export 'utils/failure.dart';
 export 'utils/state_enum.dart';
-export 'utils/utils.dart';
-export 'presentation/pages/home_page.dart';
-export 'data/models/genre_model.dart';
-export 'domain/entities/genre.dart';
-export 'presentation/pages/spalshscreen.dart';
-export 'presentation/pages/login_page.dart';
-export 'utils/sll_pinging.dart';
+export 'utils/http_ssl_pinning.dart';
 export 'utils/shared.dart';
+export 'utils/utils.dart';
+
+// data
 export 'data/models/genre_model.dart';
-export 'data/models/movie_detail_model.dart';
-export 'data/models/movie_model.dart';
-export 'data/models/movie_response.dart';
-export 'data/models/movie_table.dart';
-export 'data/models/tv_detail_model.dart';
-export 'data/models/tv_model.dart';
-export 'data/models/tv_response.dart';
-export 'data/models/tv_table.dart';
-export 'data/datasources_movie/database_helper.dart';
-export 'data/datasources_movie/movie_local_data_source.dart';
-export 'data/datasources_movie/movie_remote_data_source.dart';
-export 'data/datasources_tv/database_helper_tv.dart';
-export 'data/datasources_tv/tv_local_data_source.dart';
-export 'data/datasources_tv/tv_remote_data_source.dart';
-export 'data/repositories/movie_repository_impl.dart';
-export 'data/repositories/tv_repository_impl.dart';
+
+// domain
+export 'domain/entities/genre.dart';
+
+//presentation
+export 'presentation/pages/home_page.dart';
+export 'presentation/pages/login_page.dart';
+export 'presentation/pages/search_page.dart';
+export 'presentation/pages/splashscreen.dart';
+export 'presentation/pages/watchlist_page.dart';

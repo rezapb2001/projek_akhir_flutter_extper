@@ -2,9 +2,7 @@ import 'package:about/about.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/movie.dart';
-import 'package:tv_series/tv_series.dart';
-import 'package:search/search.dart';
-import 'package:watchlist/watchlist.dart';
+import 'package:tv/tv.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -20,7 +18,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,64 +83,69 @@ class _HomePageState extends State<HomePage> {
                 'Now Playing Movie',
                 style: kHeading6,
               ),
-              BlocBuilder<MovieNowPlayingBloc, MovieNowPlayingState>(
-                  builder: (context, state) {
-                    if (state is MovieNowPlayingLoading) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else if (state is MovieNowPlayingHasData) {
-                      final data = state.result;
-                      return MovieList(data);
-                    } else if (state is MovieNowPlayingError) {
-                      return const Text(
-                        'Failed to fetch data',
-                        key: Key('error_message'),
-                      );
-                    } else {
-                      return Container();
-                    }
-                  }),
+              BlocBuilder<NowPlayingMoviesBloc, NowPlayingMoviesState>(
+                builder: (context, state) {
+                  if (state is NowPlayingMoviesLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is NowPlayingMoviesHasData) {
+                    return MovieList(state.result);
+                  } else if (state is NowPlayingMoviesError) {
+                    return Center(
+                      child: Text(state.message),
+                    );
+                  } else {
+                    return const Text('Failed');
+                  }
+                },
+              ),
               const SizedBox(height: 5.0),
               _buildSubHeading(
                 title: 'Popular Movie',
                 onTap: () =>
                     Navigator.pushNamed(context, PopularMoviesPage.routeName),
               ),
-              BlocBuilder<MoviePopularBloc, MoviePopularState>(
-                  builder: (context, state) {
-                    if (state is MoviePopularLoading) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else if (state is MoviePopularHasData) {
-                      return MovieList(state.result);
-                    } else if (state is MoviePopularError) {
-                      return Text(state.message);
-                    } else {
-                      return const Center();
-                    }
-                  }),
+              BlocBuilder<PopularMoviesBloc, PopularMoviesState>(
+                builder: (context, state) {
+                  if (state is PopularMoviesLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is PopularMoviesHasData) {
+                    return MovieList(state.result);
+                  } else if (state is PopularMoviesError) {
+                    return Center(
+                      child: Text(state.message),
+                    );
+                  } else {
+                    return const Text('Failed');
+                  }
+                },
+              ),
               const SizedBox(height: 5.0),
               _buildSubHeading(
                 title: 'Top Rated Movie',
                 onTap: () =>
                     Navigator.pushNamed(context, TopRatedMoviesPage.routeName),
               ),
-              BlocBuilder<MovieTopRatedBloc, MovieTopRatedState>(
-                  builder: (context, state) {
-                    if (state is MovieTopRatedLoading) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else if (state is MovieTopRatedHasData) {
-                      return MovieList(state.result);
-                    } else if (state is MovieTopRatedError) {
-                      return Text(state.message);
-                    } else {
-                      return const Center();
-                    }
-                  }),
+              BlocBuilder<TopRatedMoviesBloc, TopRatedMoviesState>(
+                builder: (context, state) {
+                  if (state is TopRatedMoviesLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is TopRatedMoviesHasData) {
+                    return MovieList(state.result);
+                  } else if (state is TopRatedMoviesError) {
+                    return Center(
+                      child: Text(state.message),
+                    );
+                  } else {
+                    return const Text('Failed');
+                  }
+                },
+              ),
               const SizedBox(height: 5.0),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 10.0),
@@ -151,75 +153,72 @@ class _HomePageState extends State<HomePage> {
               ),
               const SizedBox(height: 5.0),
               Text(
-                'Now Playing Tv Series',
+                'On Air Tv Series',
                 style: kHeading6,
               ),
-              BlocBuilder<TvNowPlayingBloc, TvNowPlayingState>(
-                  builder: (context, state) {
-                    if (state is TvNowPlayingLoading) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else if (state is TvNowPlayingHasData) {
-                      final data = state.result;
-                      return TvList(data);
-                    } else if (state is TvNowPlayingError) {
-                      return const Text(
-                        'Failed to fetch data',
-                        key: Key('error_msg'),
-                      );
-                    } else {
-                      return Container();
-                    }
-                  }),
+              BlocBuilder<TvOnTheAirBloc, TvOnTheAirState>(
+                builder: (context, state) {
+                  if (state is TvOnTheAirLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is TvOnTheAirHasData) {
+                    return TvList(state.result);
+                  } else if (state is TvOnTheAirError) {
+                    return Center(
+                      child: Text(state.message),
+                    );
+                  } else {
+                    return const Text('Failed');
+                  }
+                },
+              ),
               const SizedBox(height: 5.0),
               _buildSubHeading(
                 title: 'Popular Tv Series',
                 onTap: () =>
                     Navigator.pushNamed(context, PopularTvPage.routeName),
               ),
-              BlocBuilder<TvPopularBloc, TvPopularState>(
-                  builder: (context, state) {
-                    if (state is TvPopularLoading) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else if (state is TvPopularHasData) {
-                      final data = state.result;
-                      return TvList(data);
-                    } else if (state is TvPopularError) {
-                      return const Text(
-                        'Failed to fetch data',
-                        key: Key('error_msg'),
-                      );
-                    } else {
-                      return Container();
-                    }
-                  }),
+              BlocBuilder<PopularTvShowsBloc, PopularTvShowsState>(
+                builder: (context, state) {
+                  if (state is PopularTvShowsLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is PopularTvShowsHasData) {
+                    return TvList(state.result);
+                  } else if (state is PopularTvShowsError) {
+                    return Center(
+                      child: Text(state.message),
+                    );
+                  } else {
+                    return const Text('Failed');
+                  }
+                },
+              ),
               const SizedBox(height: 5.0),
               _buildSubHeading(
                 title: 'Top Rated Tv Series',
                 onTap: () =>
                     Navigator.pushNamed(context, TopRatedTvPage.routeName),
               ),
-              BlocBuilder<TvTopRatedBloc, TvTopRatedState>(
-                  builder: (context, state) {
-                    if (state is TvTopRatedLoading) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else if (state is TvTopRatedHasData) {
-                      final data = state.result;
-                      return TvList(data);
-                    } else if (state is TvTopRatedError) {
-                      return const Text(
-                        'Failed to fetch data',
-                        key: Key('error_msg'),
-                      );
-                    } else {
-                      return Container();
-                    }
-                  }),
+              BlocBuilder<TopRatedTvShowsBloc, TopRatedTvShowsState>(
+                builder: (context, state) {
+                  if (state is TopRatedTvShowsLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is TopRatedTvShowsHasData) {
+                    return TvList(state.result);
+                  } else if (state is TopRatedTvShowsError) {
+                    return Center(
+                      child: Text(state.message),
+                    );
+                  } else {
+                    return const Text('Failed');
+                  }
+                },
+              ),
             ],
           ),
         ),

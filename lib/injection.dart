@@ -1,8 +1,6 @@
 import 'package:core/core.dart';
 import 'package:movie/movie.dart';
-import 'package:tv_series/tv_series.dart';
-import 'package:search/search.dart';
-import 'package:watchlist/watchlist.dart';
+import 'package:tv/tv.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 
@@ -10,36 +8,80 @@ final locator = GetIt.instance;
 
 void init() {
   // provider
-  locator.registerFactory<MovieNowPlayingBloc>(
-      () => MovieNowPlayingBloc(locator()));
-  locator.registerFactory<MoviePopularBloc>(() => MoviePopularBloc(locator()));
-  locator
-      .registerFactory<MovieTopRatedBloc>(() => MovieTopRatedBloc(locator()));
-  locator.registerFactory<MovieDetailBloc>(() => MovieDetailBloc(locator()));
-  locator.registerFactory<MovieRecommendationBloc>(
-      () => MovieRecommendationBloc(locator()));
   locator.registerFactory(
-    () => MovieSearchBloc(
+    () => NowPlayingMoviesBloc(
       locator(),
     ),
   );
-  locator.registerFactory<MoviesWatchlistBloc>(
-      () => MoviesWatchlistBloc(locator(), locator(), locator(), locator()));
+  locator.registerFactory(
+    () => DetailMovieBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => PopularMoviesBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => SearchMoviesBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => RecommendationMoviesBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TopRatedMoviesBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(() => WatchlistMoviesBloc(
+        locator(),
+        locator(),
+        locator(),
+        locator(),
+      ));
 
   // provider TV
-  locator.registerFactory<TvNowPlayingBloc>(() => TvNowPlayingBloc(locator()));
-  locator.registerFactory<TvPopularBloc>(() => TvPopularBloc(locator()));
-  locator.registerFactory<TvTopRatedBloc>(() => TvTopRatedBloc(locator()));
-  locator.registerFactory<TvDetailBloc>(() => TvDetailBloc(locator()));
-  locator.registerFactory<TvRecommendationBloc>(
-      () => TvRecommendationBloc(locator()));
+  locator.registerFactory(
+    () => TvOnTheAirBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvDetailBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => PopularTvShowsBloc(
+      locator(),
+    ),
+  );
   locator.registerFactory(
     () => TvSearchBloc(
       locator(),
     ),
   );
-  locator.registerFactory<TvWatchlistBloc>(
-      () => TvWatchlistBloc(locator(), locator(), locator(), locator()));
+  locator.registerFactory(
+    () => TvRecommendationsBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TopRatedTvShowsBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(() => WatchlistTvBloc(
+        locator(),
+        locator(),
+        locator(),
+        locator(),
+      ));
 
   // use case
   locator.registerLazySingleton(() => GetNowPlayingMovies(locator()));
@@ -54,16 +96,16 @@ void init() {
   locator.registerLazySingleton(() => GetWatchlistMovies(locator()));
 
   // use case Tv
-  locator.registerLazySingleton(() => GetNowPlayingTv(locator()));
-  locator.registerLazySingleton(() => GetPopularTv(locator()));
-  locator.registerLazySingleton(() => GetTopRatedTv(locator()));
-  locator.registerLazySingleton(() => GetDetailTv(locator()));
-  locator.registerLazySingleton(() => GetRecommendationTv(locator()));
-  locator.registerLazySingleton(() => SearchTv(locator()));
-  locator.registerLazySingleton(() => GetWatchListStatusTv(locator()));
-  locator.registerLazySingleton(() => SaveWatchlistTv(locator()));
-  locator.registerLazySingleton(() => RemoveWatchlistTv(locator()));
-  locator.registerLazySingleton(() => GetWatchlistTv(locator()));
+  locator.registerLazySingleton(() => GetPopularTvShows(locator()));
+  locator.registerLazySingleton(() => GetTopRatedTvShows(locator()));
+  locator.registerLazySingleton(() => GetTvDetail(locator()));
+  locator.registerLazySingleton(() => GetTvOnTheAir(locator()));
+  locator.registerLazySingleton(() => GetTvRecommendations(locator()));
+  locator.registerLazySingleton(() => GetWatchlistTvShows(locator()));
+  locator.registerLazySingleton(() => GetWatchListTvStatus(locator()));
+  locator.registerLazySingleton(() => RemoveTvWatchlist(locator()));
+  locator.registerLazySingleton(() => SaveTvWatchlist(locator()));
+  locator.registerLazySingleton(() => SearchTvShows(locator()));
 
   // repository
   locator.registerLazySingleton<MovieRepository>(
@@ -94,10 +136,11 @@ void init() {
       () => TvLocalDataSourceImpl(databaseHelper: locator()));
 
   // helper
-  locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
+  locator
+      .registerLazySingleton<DatabaseMovieHelper>(() => DatabaseMovieHelper());
 
   // helper tv_series
-  locator.registerLazySingleton<DatabaseHelperTv>(() => DatabaseHelperTv());
+  locator.registerLazySingleton<DatabaseTvHelper>(() => DatabaseTvHelper());
 
   // external
   locator.registerLazySingleton(() => http.Client());

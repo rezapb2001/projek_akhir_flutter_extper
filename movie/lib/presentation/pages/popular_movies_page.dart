@@ -16,8 +16,9 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(
-            () => context.read<MoviePopularBloc>().add(OnMoviePopularCalled()));
+    Future.microtask(() => context.read<PopularMoviesBloc>().add(
+          FetchPopularMovies(),
+        ));
   }
 
   @override
@@ -28,26 +29,27 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: BlocBuilder<MoviePopularBloc, MoviePopularState>(
+        child: BlocBuilder<PopularMoviesBloc, PopularMoviesState>(
           builder: (context, state) {
-            if (state is MoviePopularLoading) {
+            if (state is PopularMoviesLoading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (state is MoviePopularHasData) {
-              final movies = state.result;
+            } else if (state is PopularMoviesHasData) {
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final movie = movies[index];
+                  final movie = state.result[index];
                   return MovieCard(movie);
                 },
-                itemCount: movies.length,
+                itemCount: state.result.length,
+              );
+            } else if (state is PopularMoviesError) {
+              return Center(
+                key: const Key('error_message'),
+                child: Text(state.message),
               );
             } else {
-              return Center(
-                key: const Key('error_msg'),
-                child: Text((state as MoviePopularError).message),
-              );
+              return const Center();
             }
           },
         ),

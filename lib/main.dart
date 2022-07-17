@@ -2,9 +2,7 @@ import 'package:about/about.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/movie.dart';
-import 'package:tv_series/tv_series.dart';
-import 'package:search/search.dart';
-import 'package:watchlist/watchlist.dart';
+import 'package:tv/tv.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,25 +22,51 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         // Movie provider
-        BlocProvider(create: (_) => di.locator<MovieNowPlayingBloc>()),
-        BlocProvider(create: (_) => di.locator<MoviePopularBloc>()),
-        BlocProvider(create: (_) => di.locator<MovieTopRatedBloc>()),
-        BlocProvider(create: (_) => di.locator<MovieDetailBloc>()),
-        BlocProvider(create: (_) => di.locator<MovieRecommendationBloc>()),
-        BlocProvider(create: (_) => di.locator<MovieSearchBloc>()),
-        BlocProvider(create: (_) => di.locator<MoviesWatchlistBloc>()),
+        BlocProvider(
+          create: (_) => di.locator<NowPlayingMoviesBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<PopularMoviesBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<TopRatedMoviesBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<RecommendationMoviesBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<DetailMovieBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<WatchlistMoviesBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<SearchMoviesBloc>(),
+        ),
 
         // Tv Series provider
-        BlocProvider(create: (_) => di.locator<TvNowPlayingBloc>()),
-        BlocProvider(create: (_) => di.locator<TvPopularBloc>()),
-        BlocProvider(create: (_) => di.locator<TvTopRatedBloc>()),
-        BlocProvider(create: (_) => di.locator<TvDetailBloc>()),
-        BlocProvider(create: (_) => di.locator<TvRecommendationBloc>()),
-        BlocProvider(create: (_) => di.locator<TvSearchBloc>()),
-        BlocProvider(create: (_) => di.locator<TvWatchlistBloc>()),
+        BlocProvider(
+          create: (_) => di.locator<TvOnTheAirBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<PopularTvShowsBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<TopRatedTvShowsBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<TvRecommendationsBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<TvDetailBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<WatchlistTvBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<TvSearchBloc>(),
+        ),
       ],
-
-
       child: MaterialApp(
         title: 'DiTonTon',
         debugShowCheckedModeBanner: false,
@@ -57,9 +81,9 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
             case '/splashscreen':
-              return MaterialPageRoute(builder: (_) => SplashScreen ());
+              return MaterialPageRoute(builder: (_) => SplashScreen());
             case ScreenLogin.routeName:
-              return MaterialPageRoute(builder: (_) => ScreenLogin ());
+              return MaterialPageRoute(builder: (_) => ScreenLogin());
             case '/home':
               return MaterialPageRoute(builder: (_) => HomePage());
             case SearchPage.routeName:
