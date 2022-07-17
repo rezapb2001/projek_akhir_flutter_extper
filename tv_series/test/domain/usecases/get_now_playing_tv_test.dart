@@ -16,7 +16,7 @@ void main() {
 
   final tTv = <Tv>[];
 
-  test('should get list of tv from the repository', () async {
+  test('should get list of tv_series from the repository', () async {
     // arrange
     when(mockTvRepository.getNowPlaying()).thenAnswer((_) async => Right(tTv));
     // act

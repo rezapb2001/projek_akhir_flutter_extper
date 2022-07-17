@@ -249,7 +249,7 @@ void main() {
     final tTvList = <TvModel>[];
     const tId = 1;
 
-    test('should return data (tv list) when the call is successful', () async {
+    test('should return data (tv_series list) when the call is successful', () async {
       // arrange
       when(mockRemoteDataSource.getRecommendedTv(tId))
           .thenAnswer((_) async => tTvList);
@@ -295,7 +295,7 @@ void main() {
   group('Search Tv', () {
     const tQuery = 'game of thrones';
 
-    test('should return tv list when call to data source is successful',
+    test('should return tv_series list when call to data source is successful',
             () async {
           // arrange
           when(mockRemoteDataSource.getSearchTv(tQuery))
@@ -333,7 +333,7 @@ void main() {
         });
   });
 
-  group('save watchlist tv', () {
+  group('save watchlist tv_series', () {
     test('should return success message when saving successful', () async {
       // arrange
       when(mockLocalDataSource.insertWatchlist(testTvSeriesTable))
@@ -355,7 +355,7 @@ void main() {
     });
   });
 
-  group('remove watchlist tv', () {
+  group('remove watchlist tv_series', () {
     test('should return success message when remove successful', () async {
       // arrange
       when(mockLocalDataSource.removeWatchlist(testTvSeriesTable))
@@ -377,7 +377,7 @@ void main() {
     });
   });
 
-  group('get watchlist tv', () {
+  group('get watchlist tv_series', () {
     test('should return list of Tv', () async {
       // arrange
       when(mockLocalDataSource.getWatchlistTv())

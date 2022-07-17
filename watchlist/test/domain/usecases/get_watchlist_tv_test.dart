@@ -15,7 +15,7 @@ void main() {
     usecase = GetWatchlistTv(mockTvRepository);
   });
 
-  test('should get list of tv from the repository', () async {
+  test('should get list of tv_series from the repository', () async {
     // arrange
     when(mockTvRepository.getWatchlistTv())
         .thenAnswer((_) async => Right(testTvSeriesList));

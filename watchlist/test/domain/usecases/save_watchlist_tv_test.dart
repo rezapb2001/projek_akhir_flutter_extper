@@ -15,7 +15,7 @@ void main() {
     usecase = SaveWatchlistTv(mockTvRepository);
   });
 
-  test('should save tv to the repository', () async {
+  test('should save tv_series to the repository', () async {
     // arrange
     when(mockTvRepository.saveWatchlistTv(testTvSeriesDetail))
         .thenAnswer((_) async => const Right('Added to Watchlist'));

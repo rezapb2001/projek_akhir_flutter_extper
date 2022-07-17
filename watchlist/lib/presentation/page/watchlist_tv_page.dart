@@ -6,7 +6,7 @@ import 'package:watchlist/watchlist.dart';
 import 'package:flutter/material.dart';
 
 class WatchlistTvPage extends StatefulWidget {
-  static const routeName = '/watchlist-tv';
+  static const routeName = '/watchlist-tv_series';
 
   const WatchlistTvPage({Key? key}) : super(key: key);
 

@@ -72,7 +72,7 @@ void init() {
     ),
   );
 
-  // repository tv
+  // repository tv_series
   locator.registerLazySingleton<TvRepository>(
     () => TvRepositoryImpl(
       remoteDataSource: locator(),
@@ -86,7 +86,7 @@ void init() {
   locator.registerLazySingleton<MovieLocalDataSource>(
       () => MovieLocalDataSourceImpl(databaseHelper: locator()));
 
-  // domain sources tv
+  // domain sources tv_series
   locator.registerLazySingleton<TvRemoteDataSource>(
       () => TvRemoteDataSourceImpl(client: locator()));
   locator.registerLazySingleton<TvLocalDataSource>(
@@ -95,7 +95,7 @@ void init() {
   // helper
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
 
-  // helper tv
+  // helper tv_series
   locator.registerLazySingleton<DatabaseHelperTv>(() => DatabaseHelperTv());
 
   // external
