@@ -1,6 +1,9 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:movie/movie.dart';
+import 'package:movie/presentation/bloc/movie_detail/movie_detail_bloc.dart';
+import 'package:movie/presentation/bloc/movie_now_playing/movie_now_playing_bloc.dart';
+import 'package:movie/presentation/bloc/movie_popular/movie_popular_bloc.dart';
+import 'package:movie/presentation/bloc/movie_top_rated/movie_top_rated_bloc.dart';
 import 'package:watchlist/presentation/bloc/movie/movie_watchlist_bloc.dart';
 
 // fake now playing movies bloc

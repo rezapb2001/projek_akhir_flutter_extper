@@ -39,6 +39,7 @@ dependencies:
   test_cov_console: ^0.2.2
   flutter_bloc: ^8.0.1
   rxdart: ^0.27.1
+  firebase_core: ^1.6.0
 
   #modularization
   about:
