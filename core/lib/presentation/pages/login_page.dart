@@ -1,4 +1,4 @@
-import 'package:core/presentation/pages/home_page.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 class ScreenLogin extends StatefulWidget {
