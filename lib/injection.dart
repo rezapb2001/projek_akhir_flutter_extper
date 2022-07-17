@@ -1,4 +1,3 @@
-import 'package:core/core.dart';
 import 'package:movie/movie.dart';
 import 'package:tv/tv.dart';
 import 'package:http/http.dart' as http;

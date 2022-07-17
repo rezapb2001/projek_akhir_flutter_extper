@@ -1,4 +1,4 @@
-name: tv_series
+name: watchlist
 description: A new Flutter package project.
 version: 0.0.1
 homepage:
@@ -23,13 +23,14 @@ dependencies:
   flutter:
     sdk: flutter
 
-  #modularization
+    #modularization
   core:
     path: ../core
-  search:
-    path: ../search
-  watchlist:
-    path: ../watchlist
+  movie:
+    path: ../movie
+  tv_series:
+    path: ../tv_series
+
 
 dev_dependencies:
   flutter_test:
