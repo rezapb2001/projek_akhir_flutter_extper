@@ -10,17 +10,13 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Search'),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const Padding(
-                padding: EdgeInsets.only(bottom: 8.0, top: 16.0),
-                child: Text(
-                  'Search',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-              ),
               Column(
                 children: <Widget>[
                   _buildCardMovie(context),

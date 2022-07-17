@@ -9,6 +9,9 @@ class WatchlistPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Watchlist'),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
