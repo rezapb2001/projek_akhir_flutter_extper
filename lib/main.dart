@@ -12,7 +12,7 @@ import 'package:ditonton/injection.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SSLHelper.init();
+  await HttpSSLPinning.init();
 
   di.init();
   runApp(MyApp());

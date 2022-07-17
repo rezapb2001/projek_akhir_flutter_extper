@@ -8,14 +8,14 @@ import '../../dummy_data/dummy_objects.dart';
 import '../../movie_helper/page_helper_test.dart';
 
 void main() {
-  late FakeMovieNowPlayingBloc fakeMovieNowPlayingBloc;
+  late FakeNowPlayingMoviesBloc fakeMovieNowPlayingBloc;
   late FakeMoviePopularBloc fakeMoviePopularBloc;
   late FakeMovieTopRatedBloc fakeMovieTopRatedBloc;
 
   setUp(() {
-    fakeMovieNowPlayingBloc = FakeMovieNowPlayingBloc();
-    registerFallbackValue(FakeMovieNowPlayingEvent());
-    registerFallbackValue(FakeMovieNowPlayingState());
+    fakeMovieNowPlayingBloc = FakeNowPlayingMoviesBloc();
+    registerFallbackValue(FakeNowPlayingMoviesEvent());
+    registerFallbackValue(FakeNowPlayingMoviesState());
 
     fakeMoviePopularBloc = FakeMoviePopularBloc();
     registerFallbackValue(FakeMoviePopularEvent());

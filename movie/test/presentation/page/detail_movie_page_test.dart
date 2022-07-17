@@ -10,21 +10,21 @@ import '../../movie_helper/page_helper_test.dart';
 
 void main() {
   late FakeMovieDetailBloc fakeMovieDetailBloc;
-  late FakeMovieWatchlistBloc fakeMovieWatchlistBloc;
-  late FakeMovieRecommendationsBloc fakeMovieRecommendationBloc;
+  late FakeMoviesWatchlistBloc fakeMovieWatchlistBloc;
+  late FakeMovieRecommendationBloc fakeMovieRecommendationBloc;
 
   setUpAll(() {
     fakeMovieDetailBloc = FakeMovieDetailBloc();
     registerFallbackValue(FakeMovieDetailEvent());
     registerFallbackValue(FakeMovieDetailState());
 
-    fakeMovieWatchlistBloc = FakeMovieWatchlistBloc();
+    fakeMovieWatchlistBloc = FakeMoviesWatchlistBloc();
     registerFallbackValue(FakeMovieWatchlistEvent());
-    registerFallbackValue(FakeMovieWatchlistState());
+    registerFallbackValue(FakeMoviesWatchlistState());
 
-    fakeMovieRecommendationBloc = FakeMovieRecommendationsBloc();
-    registerFallbackValue(FakeMovieRecommendationsEvent());
-    registerFallbackValue(FakeMovieRecommendationsState());
+    fakeMovieRecommendationBloc = FakeMovieRecommendationBloc();
+    registerFallbackValue(FakeMovieRecommendationEvent());
+    registerFallbackValue(FakeMovieRecommendationState());
   });
 
   Widget _makeTestableWidget(Widget body) {
